@@ -14,7 +14,7 @@
 
 # ISO29110-Lite - _Gestão Progressiva de Projetos e Qualidade_
 
-## intro
+## Introdução
 
 ![Status](https://img.shields.io/badge/Status-Experimental-orange?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/SysDevTools/ISO29110-Lite?label=Contribuidores&style=for-the-badge)

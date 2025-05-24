@@ -1,0 +1,3 @@
+[submodule "private"]
+	path = private
+	url = git@github.com:SysDevTools/ISO29110-Lite_p.git
