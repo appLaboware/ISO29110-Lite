@@ -23,14 +23,36 @@ AUDIENCE-SPECIFIC PROJECTION
 
 Documentation is a projection of controlled knowledge.
 
-## 3. Source hierarchy
+## 3. Language-neutral source documentation concept
+
+The generic concept adopted by this model is **Source Documentation System**: a language-level convention for machine-readable or machine-extractable documentation attached to source elements, plus a **Source Documentation Generator** that projects those annotations into structured API/reference documentation.
+
+Common language-specific realizations include documentation comments/doc comments, docstrings and Javadoc-style annotations. `Javadoc` is therefore one adapter/realization of the generic concept, not the generic concept itself.
+
+Every programming language used by a conforming product SHOULD have an adapter capable of producing the canonical source-documentation model.
+
+```text
+LANGUAGE SOURCE
+   ↓
+LANGUAGE DOCUMENTATION ADAPTER
+   ↓
+CANONICAL SOURCE DOCUMENTATION MODEL
+   ↓
+ATOMIC DOCUMENTATION
+   ↓
+DYNAMIC PROJECTIONS
+```
+
+If a language already has a mature native or ecosystem mechanism, adopt or adapt it. If no adequate mechanism exists — including scripting/batch languages or constrained DSLs — the ecosystem MAY create a generic or language-specific adapter/tool. External market demand is not a prerequisite: internal architectural necessity is sufficient justification after the normal discovery/residual process.
+
+## 4. Source hierarchy
 
 A software documentation pipeline MAY use:
 
 ```text
 SOURCE CODE
   ↓
-LANGUAGE-NATIVE API DOCUMENTATION
+SOURCE DOCUMENTATION SYSTEM
   + STRUCTURED AI-FIRST SEMANTIC ANNOTATIONS
   ↓
 ATOMIC DOCUMENTATION NODES
@@ -42,9 +64,7 @@ USER DOCUMENTATION
 PRODUCT / PROJECT DOCUMENTATION
 ```
 
-Examples of language-native documentation include Javadoc-like mechanisms, docstrings or equivalent facilities.
-
-## 4. AI-first semantic annotations
+## 5. AI-first semantic annotations
 
 The model SHOULD support structured metadata that lets an AI or deterministic documentation tool resolve intent without first re-analyzing the full implementation.
 
@@ -68,7 +88,7 @@ The annotation is not permitted to become an unverified parallel truth source.
 
 Where possible, validators MUST compare it with signatures, contracts, tests or generated metadata.
 
-## 5. Documentation atom
+## 6. Documentation atom
 
 A documentation atom is the smallest independently addressable unit of controlled documentation.
 
@@ -86,7 +106,7 @@ Each atom SHOULD include:
 - status;
 - integrity/provenance metadata.
 
-## 6. Composition
+## 7. Composition
 
 Larger documents are graphs/compositions of atoms.
 
@@ -103,7 +123,7 @@ FUNCTION ATOM
 
 Audience-specific prose may be generated while preserving lineage to the same source atom.
 
-## 7. Dynamic materialization
+## 8. Dynamic materialization
 
 When a documentation view is requested, the preferred behavior is:
 
@@ -119,7 +139,7 @@ RESOLVE requested view
 
 Static generated artifacts are caches/projections, not the primary authority, unless explicitly promoted as controlled snapshots.
 
-## 8. Controlled snapshots
+## 9. Controlled snapshots
 
 Dynamic generation does not eliminate historical reproducibility.
 
@@ -134,7 +154,7 @@ A released or contractual document MAY be materialized as an immutable snapshot 
 
 This allows the current documentation to evolve while prior released states remain reconstructable.
 
-## 9. Relations with controlled-document actors
+## 10. Relations with controlled-document actors
 
 A controlled document or atom MAY define:
 
@@ -147,7 +167,7 @@ A controlled document or atom MAY define:
 
 Changes SHOULD notify or invalidate dependent projections according to policy.
 
-## 10. Dependency propagation
+## 11. Dependency propagation
 
 When an atom changes:
 
@@ -165,7 +185,7 @@ NOTIFY FOLLOWERS / OWNERS AS REQUIRED
 
 The system SHOULD support transitive traversal.
 
-## 11. POP composition
+## 12. POP composition
 
 Procedures follow the same atomic-composition principle.
 
@@ -183,7 +203,7 @@ A POP is atomic when decomposing it further would no longer produce independentl
 
 Composite POPs SHOULD reference child POPs instead of duplicating their instructions.
 
-## 12. Queryability
+## 13. Queryability
 
 The documentation model SHOULD enable questions such as:
 
@@ -193,20 +213,22 @@ The documentation model SHOULD enable questions such as:
 - which documents must be regenerated after this change?
 - which projects consume this controlled procedure?
 - who owns, edits, executes, follows or challenges this document?
+- which source-documentation adapter generated this atom?
+- which language has no adequate documentation adapter yet?
 
-## 13. External lineage and compliance projection
+## 14. External lineage and compliance projection
 
 A documentation projection MAY display inspirations, dependencies, compliance and external-origin chains supplied by consuming governance systems.
 
 ISO29110-Lite defines how such data can be represented/composed; the consuming product/domain remains owner of the actual adoption and compliance decisions.
 
-## 14. Standards caution
+## 15. Standards caution
 
 ISO/IEC 29110 itself defines lifecycle profiles and guidance for very small entities, including process, task, role and work-product concepts. This proposal does not claim that the dynamic atom model above is prescribed by the external ISO/IEC 29110 standard.
 
 It is an ISO29110-Lite product evolution inspired by the objective of practical, lightweight, controlled lifecycle information.
 
-## 15. Final law
+## 16. Final law
 
 ```text
 WRITE KNOWLEDGE ONCE.
@@ -215,5 +237,6 @@ COMPOSE IT MANY WAYS.
 GENERATE VIEWS ON DEMAND.
 PRESERVE PROVENANCE.
 REBUILD WHEN SOURCES CHANGE.
+NORMALIZE LANGUAGE-SPECIFIC DOCUMENTATION THROUGH ADAPTERS.
 NEVER FORCE CONSUMERS TO MAINTAIN DUPLICATED KNOWLEDGE.
 ```
